@@ -122,7 +122,6 @@ public:
             if(num > shopList.size())
                 throw runtime_error("ERROR 99: ");
             for(auto i = 0; i<num; i++){
-                cout << "OPTION NO: [" << i+1 << "] ";
                 cout << "Which item do you want yo buy (select ID): "; cin >> id;
                 try{
                     if(id==0 || id > shopList.size())
@@ -142,8 +141,13 @@ public:
     void checkShopCart(vector<Items> cusList){
         cout << "\nCUSTOMER SHOP CART" << endl;
         cout << "------------------" << endl;
-        for(auto i = 0; i<cusList.size(); i++){
-            cout << i+1 <<") " << cusList[i].getName() << " " << setprecision(2) << fixed<< cusList[i].getPrice() << "$" << endl;
+        if(cusList.empty()){
+            cout << "Shopping cart is empty!" << endl;
+        }else {
+            for (auto i = 0; i < cusList.size(); i++) {
+                cout << i + 1 << ") " << cusList[i].getName() << " " << setprecision(2) << fixed
+                     << cusList[i].getPrice() << "$" << endl;
+            }
         }
     }
 private:

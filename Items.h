@@ -19,6 +19,5 @@ public:
 private:
     string name;
     double price;
-
 };
 #endif //BERTINIBUYITEMS_ITEMS_H
