@@ -14,6 +14,7 @@ public:
     void insertItemsToShop(vector<Items> &shopList){
         string itemName,choice;
         double itemPrice;
+        label:
         cout << "ADDING ITEMS TO THE SHOP" << endl;
         cout << "------------------------" << endl;
         cout << "Type (manual) or (automatic): "; cin >> choice;
@@ -43,6 +44,11 @@ public:
             shopList.push_back(sdCard);
             shopList.push_back(nanoSim);
             shopList.push_back(samsungCover);
+        }
+        else{
+            cerr << "\nInvalid option. Please select again.\n" << endl;
+            system("pause"); system("clear"); system("cls");
+            goto label;
         }
     }
     void printAvailableItems(const vector<Items> &shopList){
@@ -85,35 +91,52 @@ public:
             cusList.pop_back();
         }
     }
-    void makeOrder(vector<Items> &shopList, vector<Items> &cusList){
-        int id,num;
-        cout << "\nHow many items you want to add to your shopping cart: "; cin >> num;
-        cout << endl;
-        for(auto i = 0; i<num; i++){
-            cout << "Which item do you want yo buy (select ID): "; cin >> id;
-            cusList.push_back(shopList[id-1]);
-        }
-    }
-
-    int testOrder(vector<Items> &shopList, vector<Items> &cusList){
+    void testOrder(vector<Items> &shopList, vector<Items> &cusList){
         int id,num;
         cout << "\nHow many items you want to add to your shopping cart: "; cin >> num;
         cout << endl;
         try{
             if(num > shopList.size())
                 throw runtime_error("ERROR 99: ");
-        }catch(runtime_error &error){
-            cout << error.what() << "You cannot by more items than the shop has." << endl;
-            exit;
-        }
-
-            /*cout << "How many items you want to add to your shopping cart: "; cin >> num;
-            cout << endl;
             for(auto i = 0; i<num; i++){
                 cout << "Which item do you want yo buy (select ID): "; cin >> id;
-                cusList.push_back(shopList[id-1]);
+                try{
+                    if(id==0 || id > shopList.size())
+                        throw runtime_error("\nERROR 90: ");
+                    cusList.push_back(shopList[id-1]);
+                }catch(runtime_error &invalid){
+                    cout << invalid.what() << "Invalid option. Check again." << endl;
+                    exit;
+                }
             }
-             */
+        }catch(runtime_error &maxSize){
+            cout << maxSize.what() << "You cannot by more items than the shop has." << endl;
+            exit;
+        }
+    }
+    void makeOrder(vector<Items> &shopList, vector<Items> &cusList){
+        int id,num;
+        cout << "\nHow many items you want to add to your shopping cart: "; cin >> num;
+        cout << endl;
+        try{
+            if(num > shopList.size())
+                throw runtime_error("ERROR 99: ");
+            for(auto i = 0; i<num; i++){
+                cout << "OPTION NO: [" << i+1 << "] ";
+                cout << "Which item do you want yo buy (select ID): "; cin >> id;
+                try{
+                    if(id==0 || id > shopList.size())
+                        throw runtime_error("\nERROR 90: ");
+                    cusList.push_back(shopList[id-1]);
+                }catch(runtime_error &invalid){
+                    cerr << invalid.what() << "Invalid option. Select again.\n" << endl;
+                    i--;
+                }
+            }
+        }catch(runtime_error &maxSize){
+            cerr << maxSize.what() << "You cannot by more items than the shop has.\n" << endl;
+            system("pause"); system("clear"); system("cls");
+        }
     }
 
     void checkShopCart(vector<Items> cusList){

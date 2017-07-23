@@ -5,8 +5,18 @@
 
 void line();
 void options();
+void init();
+void testInit();
 
 int main() {
+    testInit();
+
+    line();
+    system("pause");
+    return 0;
+}
+
+void testInit(){
     vector<Items> cusList;
     vector<Items> shopList;
     Order order;
@@ -24,17 +34,49 @@ int main() {
         cout << "\n\t\tSelect an option: ";
         cin >> option;
         switch (option) {
-            case 1: order.printAvailableItems(shopList); break;
-            case 2: josh.makeOrder(shopList, cusList); break;
-            case 3: josh.checkShopCart(cusList); break;
-            case 4: josh.totalPrice(cusList, premium); break;
-            case 5: cout << "\nThank you for buiyng from us." << endl; flag = false; break;
+            case 1:order.printAvailableItems(shopList);break;
+            case 2:josh.printAvailableItems(shopList);josh.makeOrder(shopList, cusList);break;
+            case 3:josh.checkShopCart(cusList); break;
+            case 4:josh.totalPrice(cusList, premium);break;
+            case 5:
+                cout << "\nThank you for buiyng from us." << endl; flag = false; break;
+            default :
+                cerr << "\nThis option does not exist. Please select again.\n" << endl;
+                system("pause"); system("clear"); system("cls");
+                break;
         }
     }
-
+}
+void init(){
+    vector<Items> cusList;
+    vector<Items> shopList;
+    Order order;
+    Customer josh("Josh", "Yales", "Valdera 27", true);
+    order.insertItemsToShop(shopList);
+    //order.printAvailableItems(shopList);
     line();
-    system("pause");
-    return 0;
+
+    bool premium = josh.isPremium();
+    int option;
+
+    bool flag = true;
+    while (flag) {
+        options();
+        cout << "\n\t\tSelect an option: ";
+        cin >> option;
+        switch (option) {
+            case 1:order.printAvailableItems(shopList);break;
+            case 2:josh.printAvailableItems(shopList);josh.makeOrder(shopList, cusList);break;
+            case 3:josh.checkShopCart(cusList); break;
+            case 4:josh.totalPrice(cusList, premium);break;
+            case 5:
+                cout << "\nThank you for buiyng from us." << endl; flag = false; break;
+            default :
+                cerr << "\nThis option does not exist. Please select again.\n" << endl;
+                system("pause"); system("clear"); system("cls");
+                break;
+        }
+    }
 }
 
 void line(){
