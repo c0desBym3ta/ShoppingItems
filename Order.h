@@ -47,12 +47,18 @@ public:
         }
         else{
             cerr << "\nInvalid option. Please select again.\n" << endl;
-            system("pause"); system("clear"); system("cls");
+            pauseClear();
             goto label;
         }
     }
-    void printAvailableItems(const vector<Items> &shopList){
+    void pauseClear(){
+        system("pause"); system("clear"); system("cls");
+    }
+    void clear(){
         system("clear"); system("cls");
+    }
+    void printAvailableItems(const vector<Items> &shopList){
+        clear();
         cout << "\nAVAILABLE SHOP ITEMS" << endl;
         cout << "--------------------" << endl;
         for(auto i = 0; i<shopList.size(); i++){
@@ -135,10 +141,10 @@ public:
             }
         }catch(runtime_error &maxSize){
             cerr << maxSize.what() << "You cannot by more items than the shop has.\n" << endl;
-            system("pause"); system("clear"); system("cls");
+            pauseClear();
         }
         cout << "\nItems successfully added to your shopping cart.\n" << endl;
-        system("pause");system("clear"); system("cls");
+        pauseClear();
     }
     void checkShopCart(vector<Items> cusList){
         cout << "\nCUSTOMER SHOP CART" << endl;

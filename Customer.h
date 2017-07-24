@@ -14,12 +14,51 @@ public:
     Customer(string name = "", string surname = "", string address = "", string email = "", double balanceAcount  = 0.00, bool premiumUser = false)
             : name(name), surname(surname), address(address), email(email), balanceAcount(balanceAcount), premiumUser(premiumUser) {}
 
+    Customer changeSettings(Customer &cus){
+            string anws, newName, newSurname, newAddress, newEmail, premiumAsk;
+            double newBalanceAccount;
+            bool premiumUser;
+            again:
+            cout << "\nChange personal info (yes, no): "; cin >> anws;
+            if(anws == "yes" || anws == "y"){
+                    int slc;
+                    cout << "\nSelect ID number: "; cin >> slc;
+                    switch (slc){
+                            case 1: cout << "New name: "; cin >> newName; cus.setName(newName); break;
+                            case 2: cout << "New surname: "; cin >> newSurname; cus.setSurname(newSurname); break;
+                            case 3: cout << "New address: "; cin >> newAddress; cus.setAddress(newAddress); break;
+                            case 4: cout << "New email: "; cin >> newEmail; cus.setEmail(newEmail); break;
+                            case 5: cout << "New balance account: "; cin >> newBalanceAccount; cus.setBalanceAcount(newBalanceAccount); break;
+                            case 6: cout << "Are you premium user: "; cin >> premiumAsk;
+                                if(premiumAsk == "yes" || premiumAsk == "y"){
+                                        premiumUser = true;
+                                        cus.setPremiumUser(premiumUser);
+                                }else{
+                                        premiumUser = false;
+                                        cus.setPremiumUser(premiumUser);
+                                }
+                            default: display(); break;
+                    }
+                    cout << "\nAccount settings updated successfully!\n" << endl;
+                    pauseClear();
+                    display();
+                    goto again;
+            }
+            else {
+                    cout << endl;
+                    pauseClear();
+            }
+    }
+    void pauseClear(){
+                system("pause");system("clear"); system("cls");
+    }
     void display(){
         cout << "\nPERSONAL ACCOUNT INFO" << endl;
         cout << "---------------------" << endl;
-        cout << "Name: "  << name << "\nSurname: " << surname << "\nAddress: " << address << "\nEmail: " << email << endl;
-        cout << "Balance account: " << balanceAcount << "$" << "\nPremium: " << premiumUser << endl << endl;
-        system("pause");system("clear"); system("cls");
+        cout << "[1] Name: "  << name << "\n[2] Surname: " << surname << "\n[3] Address: " << address << "\n[4] Email: " << email << endl;
+        cout << "[5] Balance account: " << setprecision(2) << fixed << balanceAcount << "$" << "\n[6] Premium: " << premiumUser << endl << endl;
+
+          //  pauseClear();
     }
 
     const string &getName() const {return name;}

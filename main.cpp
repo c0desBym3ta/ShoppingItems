@@ -6,7 +6,7 @@
 
 int main() {
     Program program;
-    program.init();
+    program.testInit();
 
     program.line();
     system("pause");

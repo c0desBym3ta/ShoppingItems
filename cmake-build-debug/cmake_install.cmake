@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/UserW7m3ra/Desktop/ShoppingItems
+# Install script for directory: C:/Users/UserW7m3ra/Desktop/Projects/ShoppingItems
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/UserW7m3ra/Desktop/ShoppingItems/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/UserW7m3ra/Desktop/Projects/ShoppingItems/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

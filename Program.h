@@ -3,7 +3,7 @@
 //
 
 #ifndef SHOPPINGITEMS_PROGRAM_H
-#define SHOPPINGITEMS_PROGRAM_H
+    #define SHOPPINGITEMS_PROGRAM_H
 
 #include "header.h"
 #include "Customer.h"
@@ -59,16 +59,19 @@ public:
                 case 2:josh.clearScreen(); josh.printAvailableItems(shopList);josh.makeOrder(shopList, cusList);break;
                 case 3:josh.clearScreen(); josh.checkShopCart(cusList); break;
                 case 4:josh.totalPrice(cusList, premium);break;
-                case 5:josh.clearScreen(); josh.display(); break;
+                case 5:josh.clearScreen(); josh.display(); josh.changeSettings(josh); break;
                 case 6:josh.clearScreen(); break;
                 case 7:
                     cout << "\nThank you for using our services." << endl; flag = false; break;
                 default :
                     cerr << "\nThis option does not exist. Please select again.\n" << endl;
-                    system("pause"); system("clear"); system("cls");
+                    pauseClear();
                     break;
             }
         }
+    }
+    void pauseClear(){
+        system("pause"); system("clear"); system("cls");
     }
     void init(){
         vector<Items> cusList;
@@ -99,7 +102,7 @@ public:
                     cout << "\nThank you for using our services." << endl; flag = false; break;
                 default :
                     cerr << "\nThis option does not exist. Please select again.\n" << endl;
-                    system("pause"); system("clear"); system("cls");
+                    pauseClear();
                     break;
             }
         }
