@@ -4,6 +4,7 @@
 CMakeFiles/ShoppingItems.dir/main.cpp.obj: ../Customer.h
 CMakeFiles/ShoppingItems.dir/main.cpp.obj: ../Items.h
 CMakeFiles/ShoppingItems.dir/main.cpp.obj: ../Order.h
+CMakeFiles/ShoppingItems.dir/main.cpp.obj: ../Program.h
 CMakeFiles/ShoppingItems.dir/main.cpp.obj: ../header.h
 CMakeFiles/ShoppingItems.dir/main.cpp.obj: ../main.cpp
 

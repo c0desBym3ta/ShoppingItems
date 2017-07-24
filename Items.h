@@ -16,6 +16,7 @@ public:
     const string &getName() const{return name;}
     double getPrice() const{return price;}
     void setPrice(double &newPrice){this->price = newPrice;}
+
 private:
     string name;
     double price;

@@ -15,7 +15,7 @@ public:
         string itemName,choice;
         double itemPrice;
         label:
-        cout << "ADDING ITEMS TO THE SHOP" << endl;
+        cout << "\nADDING ITEMS TO THE SHOP" << endl;
         cout << "------------------------" << endl;
         cout << "Type (manual) or (automatic): "; cin >> choice;
         if(choice == "manual" || choice == "m"){
@@ -52,6 +52,7 @@ public:
         }
     }
     void printAvailableItems(const vector<Items> &shopList){
+        system("clear"); system("cls");
         cout << "\nAVAILABLE SHOP ITEMS" << endl;
         cout << "--------------------" << endl;
         for(auto i = 0; i<shopList.size(); i++){
@@ -136,8 +137,9 @@ public:
             cerr << maxSize.what() << "You cannot by more items than the shop has.\n" << endl;
             system("pause"); system("clear"); system("cls");
         }
+        cout << "\nItems successfully added to your shopping cart.\n" << endl;
+        system("pause");system("clear"); system("cls");
     }
-
     void checkShopCart(vector<Items> cusList){
         cout << "\nCUSTOMER SHOP CART" << endl;
         cout << "------------------" << endl;
@@ -149,6 +151,9 @@ public:
                      << cusList[i].getPrice() << "$" << endl;
             }
         }
+    }
+    void clearScreen(){
+        system("clear"); system("cls");
     }
 private:
 };
