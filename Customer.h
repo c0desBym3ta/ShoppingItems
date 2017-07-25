@@ -13,18 +13,18 @@
 
 class Customer : public Order{
 public:
-    Customer(string name = "", string surname = "", string address = "", string email = "", double balanceAcount  = 0.00, bool premiumUser = false)
-            : name(name), surname(surname), address(address), email(email), balanceAcount(balanceAcount), premiumUser(premiumUser) {}
+    Customer(string name = "", string surname = "", string address = "", string email = "", double balanceAcount  = 0.00, bool premiumUser = false, string username = "", string password =" ")
+            : name(name), surname(surname), address(address), email(email), balanceAcount(balanceAcount), premiumUser(premiumUser), username(username), password(password) {}
 
     Customer createAccount(Customer &cus){
         again:
         cout << "CREATE ACCOUNT" << endl;
         cout << "--------------" << endl;
-        string username, password, verPass;
-        cout << "Insert username: "; cin >> username; cus.setUsername(username);
-        cout << "Insert password: "; cin >> password; cus.setPassword(password);
+        string newUsername, newPassword, verPass;
+        cout << "Insert username: "; cin >> newUsername; cus.setUsername(newUsername);
+        cout << "Insert password: "; cin >> newPassword; cus.setPassword(newPassword);
         cout << "Verify password: "; cin >> verPass;
-        if(password == verPass){
+        if(newPassword == verPass){
             cout << "\nAccount created successfully!\n" << endl;
             pauseClear();
             return cus;
@@ -56,7 +56,7 @@ public:
         return true;
     }
     Customer changeSettings(Customer &cus){
-            string anws, newName, newSurname, newAddress, newEmail, premiumAsk;
+            string anws, newName, newSurname, newAddress, newEmail, newPassword;
             double newBalanceAccount;
             bool premiumUser = false;
             again:
@@ -70,6 +70,7 @@ public:
                             case 3: cout << "New address: "; cin >> newAddress; cus.setAddress(newAddress); break;
                             case 4: cout << "New email: "; cin >> newEmail; cus.setEmail(newEmail); break;
                             case 5: cout << "New balance account: "; cin >> newBalanceAccount; cus.setBalanceAcount(newBalanceAccount); break;
+                            case 6: cout << "New password: "; cin >>  newPassword; cus.setPassword(newPassword); break;
                             default: display(); break;
                     }
                     cout << "\nAccount settings updated successfully!\n" << endl;
@@ -89,8 +90,8 @@ public:
     void display(){
         cout << "\nPERSONAL ACCOUNT INFO" << endl;
         cout << "---------------------" << endl;
-        cout << "[1] Name: "  << name << "\n[2] Surname: " << surname << "\n[3] Address: " << address << "\n[4] Email: " << email << endl;
-        cout << "[5] Balance account: " << setprecision(2) << fixed << balanceAcount << "$" << "\n[6] Premium: " << premiumUser << endl << endl;
+        cout << "[0] Username: " << username << "\n[1] Name: "  << name << "\n[2] Surname: " << surname << "\n[3] Address: " << address << "\n[4] Email: " << email << endl;
+        cout << "[5] Balance account: " << setprecision(2) << fixed << balanceAcount << "$" << "\n[6] Password: " << password <<"\n[7] Premium: " << premiumUser << endl << endl;
 
           //  pauseClear();
     }

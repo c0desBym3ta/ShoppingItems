@@ -51,12 +51,31 @@ public:
 
         return newCus;
     }
-    void testInit(){
+    void pauseClear(){
+        system("pause"); system("clear"); system("cls");
+    }
+    void init(){
         vector<Items> cusList;
         vector<Items> shopList;
         Order order;
-
+        int opt;
         Customer josh;
+
+        cout << "\t\t\tWELCOME TO C++ SHOP" << endl;
+        cout << "\t\t\t-------------------" << endl;
+        cout << "\n(1) Create new account. \n(2) Login to an existed. " << endl;
+        cout << "\n\t\tSelect 1 or 2: "; cin >> opt;
+        line();
+        pauseClear();
+
+        if(opt == 1) {
+            josh.createAccount(josh);
+            josh.login();
+        }
+        else if(opt == 2){
+            josh.login();
+        }
+
         newUser(josh);
         order.insertItemsToShop(shopList);
         line();
@@ -75,43 +94,6 @@ public:
                 case 3:josh.clearScreen(); josh.checkShopCart(cusList); break;
                 case 4:josh.totalPrice(cusList, premium);break;
                 case 5:josh.clearScreen(); josh.display(); josh.changeSettings(josh); break;
-                case 6:josh.clearScreen(); break;
-                case 7:
-                    cout << "\nThank you for using our services." << endl; flag = false; break;
-                default :
-                    cerr << "\nThis option does not exist. Please select again.\n" << endl;
-                    pauseClear();
-                    break;
-            }
-        }
-    }
-    void pauseClear(){
-        system("pause"); system("clear"); system("cls");
-    }
-    void init(){
-        vector<Items> cusList;
-        vector<Items> shopList;
-        Order order;
-
-        Customer josh;
-        newUser(josh);
-        order.insertItemsToShop(shopList);
-        line();
-
-        bool premium = josh.isPremiumUser();
-        int option;
-
-        bool flag = true;
-        while (flag) {
-            options();
-            cout << "\n\t\tSelect an option: ";
-            cin >> option;
-            switch (option) {
-                case 1:josh.clearScreen(); order.printAvailableItems(shopList);break;
-                case 2:josh.clearScreen(); josh.printAvailableItems(shopList);josh.makeOrder(shopList, cusList); break;
-                case 3:josh.clearScreen(); josh.checkShopCart(cusList); break;
-                case 4:josh.totalPrice(cusList, premium);break;
-                case 5:josh.clearScreen(); josh.display(); break;
                 case 6:josh.clearScreen(); break;
                 case 7:
                     cout << "\nThank you for using our services." << endl; flag = false; break;

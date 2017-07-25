@@ -4,16 +4,10 @@
 #include "Order.h"
 #include "Program.h"
 
-bool checkAccount(){
-    Customer cus;
-    cus.createAccount(cus);
-    cus.login();
-}
 
 int main() {
     Program program;
-    if(checkAccount())
-        program.testInit();
+    program.init();
 
     program.line();
     program.pauseClear();
