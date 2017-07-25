@@ -67,8 +67,9 @@ public:
     }
     double totalPrice(vector<Items> &cusList, bool &premium ){
         double price = 0.00, discount = 0.00;
+        clear();
         if(premium){
-            cout << "\nPremium user detected. Discount 15% to items under 15$." << endl;
+            cout << "\n\n\n\n\n\n\n\nPremium user detected. Discount 15% to items under 15$." << endl;
             for(auto i = 0; i<cusList.size(); i++){
                 if(cusList[i].getPrice() <= 15.00){
                     double tmpPrice;
@@ -81,21 +82,15 @@ public:
                 }
                     price += cusList[i].getPrice();
             }
-            cout << "\n\t\t\tTotal price: " << setprecision(2) << fixed << price << "$" << endl;
+            cout << "\n\t\t\tTotal price: " << setprecision(2) << fixed << price << "$\n\n" << endl;
+            pauseClear();
             return price;
         }else{
             for(auto i = 0; i<cusList.size(); i++)
                 price += cusList[i].getPrice();
-            cout << "\n\t\t\tTotal price: " << setprecision(2) << fixed << price << "$"<< endl;
+            cout << "\n\n\n\n\n\n\n\n\t\t\tTotal price: " << setprecision(2) << fixed << price << "$\n\n"<< endl;
+            pauseClear();
             return price;
-        }
-    }
-    void deleteFromCart(vector<Items> &cusList){
-        int num,id;
-        cout << "How many items do you want to remove from your card: "; cin >> num;
-        for(auto i = 0; i < num; i++){
-            cout << "Which items do you want to remove (select ID): "; cin >> id;
-            cusList.pop_back();
         }
     }
     void testOrder(vector<Items> &shopList, vector<Items> &cusList){
@@ -146,17 +141,38 @@ public:
         cout << "\nItems successfully added to your shopping cart.\n" << endl;
         pauseClear();
     }
-    void checkShopCart(vector<Items> cusList){
+    int checkShopCart(vector<Items> &cusList){
         cout << "\nCUSTOMER SHOP CART" << endl;
         cout << "------------------" << endl;
+        string anws;
         if(cusList.empty()){
-            cout << "Shopping cart is empty!" << endl;
+            cout << "Shopping cart is empty!\n" << endl;
+            return -1;
         }else {
             for (auto i = 0; i < cusList.size(); i++) {
                 cout << i + 1 << ") " << cusList[i].getName() << " " << setprecision(2) << fixed
                      << cusList[i].getPrice() << "$" << endl;
             }
         }
+        cout << "\n\nDo you want yo remove items from shopping cart: "; cin >> anws;
+        if(anws == "yes" || anws == "y"){
+            deleteFromCart(cusList);
+        }
+        cout << endl;
+        pauseClear();
+    }
+    void deleteFromCart(vector<Items> &cusList){
+        int num,id;
+        cout << "\nHow many items do you want to remove from your card: "; cin >> num;
+        for(auto i = 0; i < num; i++){
+            cout << "Which items do you want to remove (select ID): "; cin >> id;
+            //cusList.pop_back();
+            cusList.erase(cusList.begin()+id-1);
+        }
+        if(num == 1)
+            cout << "\nItem removed successfully!" << endl;
+        else if(num > 1)
+            cout << "\nItems removed successfully!" << endl;
     }
     void clearScreen(){
         system("clear"); system("cls");

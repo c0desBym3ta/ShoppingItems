@@ -8,6 +8,8 @@
 
 #include "header.h"
 #include "Order.h"
+#define yes 1
+#define no 0
 
 class Customer : public Order{
 public:
@@ -17,7 +19,7 @@ public:
     Customer changeSettings(Customer &cus){
             string anws, newName, newSurname, newAddress, newEmail, premiumAsk;
             double newBalanceAccount;
-            bool premiumUser;
+            bool premiumUser = false;
             again:
             cout << "\nChange personal info (yes, no): "; cin >> anws;
             if(anws == "yes" || anws == "y"){
@@ -29,14 +31,6 @@ public:
                             case 3: cout << "New address: "; cin >> newAddress; cus.setAddress(newAddress); break;
                             case 4: cout << "New email: "; cin >> newEmail; cus.setEmail(newEmail); break;
                             case 5: cout << "New balance account: "; cin >> newBalanceAccount; cus.setBalanceAcount(newBalanceAccount); break;
-                            case 6: cout << "Are you premium user: "; cin >> premiumAsk;
-                                if(premiumAsk == "yes" || premiumAsk == "y"){
-                                        premiumUser = true;
-                                        cus.setPremiumUser(premiumUser);
-                                }else{
-                                        premiumUser = false;
-                                        cus.setPremiumUser(premiumUser);
-                                }
                             default: display(); break;
                     }
                     cout << "\nAccount settings updated successfully!\n" << endl;
@@ -48,6 +42,7 @@ public:
                     cout << endl;
                     pauseClear();
             }
+        return cus;
     }
     void pauseClear(){
                 system("pause");system("clear"); system("cls");

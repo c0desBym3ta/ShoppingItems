@@ -93,7 +93,7 @@ public:
             cin >> option;
             switch (option) {
                 case 1:josh.clearScreen(); order.printAvailableItems(shopList);break;
-                case 2:josh.clearScreen(); josh.printAvailableItems(shopList);josh.makeOrder(shopList, cusList);break;
+                case 2:josh.clearScreen(); josh.printAvailableItems(shopList);josh.makeOrder(shopList, cusList); break;
                 case 3:josh.clearScreen(); josh.checkShopCart(cusList); break;
                 case 4:josh.totalPrice(cusList, premium);break;
                 case 5:josh.clearScreen(); josh.display(); break;
