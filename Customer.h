@@ -16,6 +16,45 @@ public:
     Customer(string name = "", string surname = "", string address = "", string email = "", double balanceAcount  = 0.00, bool premiumUser = false)
             : name(name), surname(surname), address(address), email(email), balanceAcount(balanceAcount), premiumUser(premiumUser) {}
 
+    Customer createAccount(Customer &cus){
+        again:
+        cout << "CREATE ACCOUNT" << endl;
+        cout << "--------------" << endl;
+        string username, password, verPass;
+        cout << "Insert username: "; cin >> username; cus.setUsername(username);
+        cout << "Insert password: "; cin >> password; cus.setPassword(password);
+        cout << "Verify password: "; cin >> verPass;
+        if(password == verPass){
+            cout << "\nAccount created successfully!\n" << endl;
+            pauseClear();
+            return cus;
+        }else{
+            cout << "\n\nPasswords does not match. Please try again.\n" << endl;
+            pauseClear();
+            goto again;
+        }
+    }
+    bool login(){
+        Customer cus;
+        string newUsername = "", newPassword = "";
+        again:
+        cout << "LOGIN TO YOUR ACCOUNT" << endl;
+        cout << "---------------------" << endl;
+        cout << "Insert username: "; cin >> newUsername; cus.setUsername(newUsername);
+        cout << "Insert password: "; cin >> newPassword; cus.setPassword(newPassword);
+        string cusUsername = cus.getUsername();
+        string cusPassword = cus.getPassword();
+        if(username == cusUsername && password == cusPassword){
+            cout << "\nLogin successfully!\n" << endl;
+        }
+        else{
+            cout << "\nIncorrect username or password. Try again!\n" << endl;
+            system("pause"); system("cls");
+            goto again;
+        }
+        pauseClear();
+        return true;
+    }
     Customer changeSettings(Customer &cus){
             string anws, newName, newSurname, newAddress, newEmail, premiumAsk;
             double newBalanceAccount;
@@ -68,9 +107,13 @@ public:
     void setPremiumUser(bool newPremiumUser){this->premiumUser = newPremiumUser;}
     double getBalanceAcount() const { return balanceAcount; }
     void setBalanceAcount(double newBalanceAcount) { this->balanceAcount = newBalanceAcount; }
+    const string &getUsername() const {return username;}
+    void setUsername(const string &newUsername){this->username = newUsername;}
+    const string &getPassword() const {return password;}
+    void setPassword(const string &newPassword) {this->password = newPassword;}
 
 private:
-    string name, surname, address, email;
+    string name, surname, address, email, username, password;
     bool premiumUser;
     double balanceAcount;
     vector <Items> itemsList;

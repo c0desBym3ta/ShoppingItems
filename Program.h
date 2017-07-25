@@ -12,6 +12,21 @@
 
 class Program {
 public:
+
+    bool logon(){
+        cout << "LOGIN IN TO YOUR ACCOUNT" << endl;
+        cout << "------------------------" << endl;
+        string username = "daniel", password = "danielakoc";
+        cout << "Insert username: "; cin >> username;
+        cout << "Insert password: "; cin >> password;
+        if(username == "daniel" && password == "danielakoc") {
+            cout << "\n\n\n\n\n\t\t\tLogin successfully!\n\n" << endl;
+            pauseClear();
+            return true;
+        }
+        return false;
+    }
+
     Customer newUser(Customer &newCus){
         string newName, newSurname, newAddress, newEmail, anws;
         double newBalanceAcount;
@@ -19,7 +34,7 @@ public:
         cout << "New user registration." << endl;
         cout << "\nEnter your name: "; cin >> newName;
         cout << "Enter your surname: "; cin >> newSurname;
-        cout <<"Enter your address: "; cin >> newAddress;
+        cout << "Enter your address: "; cin >> newAddress;
         cout << "Enter your email: "; cin >> newEmail;
         cout << "Enter your balance account: "; cin >> newBalanceAcount;
         cout << "Are you a premium user: "; cin >> anws;
@@ -32,7 +47,7 @@ public:
         }
         newCus.setName(newName); newCus.setSurname(newSurname); newCus.setAddress(newAddress); newCus.setEmail(newEmail); newCus.setBalanceAcount(newBalanceAcount);
         cout << "\nRegistretion completed with success.\n" << endl;
-        system("pause"); system("clear"); system("cls");
+        pauseClear();
 
         return newCus;
     }
